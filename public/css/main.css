@@ -1,0 +1,233 @@
+body {
+  font-family: Georgia, Arial, 'georgiaregular',sans-serif, 'Open Sans';
+  background: #ff8000;
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: subpixel-antialiased;
+  color: #fff;
+  line-height: 25px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  margin: 70px 30px 30px;
+  display: block;
+}
+/* Add a black background color to the top navigation */
+.topnav {
+background-color: #ff8000;
+overflow: hidden;
+/* min-height: 48px; */
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+float: left;
+display: block;
+color: #f2f2f2;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+}
+
+/* Add an active class to highlight the current page */ */
+.active {
+background-color: orange;
+color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+display: none;
+}
+
+/* Dropdown container - needed to position the dropdown content */
+.dropdown {
+float: left;
+overflow: hidden;
+min-height: 48px;
+}
+
+/* Style the dropdown button to fit inside the topnav */
+.dropdown .dropbtn {
+font-size: 17px;
+border: none;
+outline: none;
+color: white;
+padding: 14px 16px;
+background-color: #ff8000;
+font-family: inherit;
+margin: 0;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #ff8000;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+/* float: none; */
+color: white;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+text-align: left;
+}
+
+/* Add a dark background on topnav links and the dropdown button on hover */
+.topnav a:hover, .dropdown:hover .dropbtn {
+background-color: orange;
+color: white;
+}
+
+/* Add a grey background to dropdown links on hover */
+.dropdown-content a:hover {
+background-color: orange;
+color: white;
+}
+
+/* Show the dropdown menu when the user moves the mouse over the dropdown button */
+.dropdown:hover .dropdown-content {
+display: block;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 800px) {
+.topnav a:not(:first-child), .dropdown .dropbtn {
+display: none;
+}
+.topnav a.icon {
+float: right;
+display: block;
+font-size: 30px;
+background-color: orange;
+}
+.firm-name{
+margin: 10px 0px 20px 70px;
+}
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 800px) {
+.topnav.responsive {position: relative;}
+.topnav.responsive a.icon {
+position: absolute;
+right: 0;
+top: 0;
+}
+.topnav.responsive a {
+float: none;
+display: block;
+text-align: left;
+}
+.topnav.responsive .dropdown {float: none;}
+.topnav.responsive .dropdown-content {position: relative;}
+.topnav.responsive .dropdown .dropbtn {
+display: block;
+width: 100%;
+text-align: left;
+}
+.topnav.firm-name {
+position: sticky;
+right: 0;
+top: 0;
+text-align: right;
+}
+}
+.firm-name{
+  margin: 50px 10px 20px;
+}
+.firm-name a {
+  text-decoration: none;
+  color: white;
+}
+.firm-name h4 {
+  font-size: 22px;
+}
+hr{
+  border: 0;
+  clear:both;
+  display:block;
+  width: 100%;
+  background-color:#FFFF00;
+  height: 1px;
+}
+.header .header-left{
+  font-size : 32px;
+  font-weight: bold;
+  line-height: 40px;
+}
+.header hr{
+  border: 0;
+  clear:both;
+  display:block;
+  width: 90%;
+  background-color:#FFFF00;
+  height: 1px;
+}
+.header .header-top-read span {
+  /* font-weight: bold; */
+  font-size: 19px;
+}
+.header .header-top-read div {
+  margin-top: 20px;
+  font-size: 16px;
+}
+.header .header-top-read a {
+  text-decoration: underline;
+  font-size: 19px;
+  color: white;
+}
+.header .header-left-bottom span{
+  font-size: 19px;
+}
+/* .recent_news a{
+  font-size: 13px;
+  text-decoration: dashed;
+  background-color:  orange;
+  color: white;
+} */
+.recent_news a {
+  margin-top: 20px;
+  font-size: 16px;
+  text-decoration: dashed;
+  color: white;
+}
+.header .header-left-bottom div{
+  margin-top: 20px;
+}
+.header .header-left-bottom .view-all-post a {
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+}
+.header .header-left-bottom .view-all-post{
+  margin-bottom: 20px;
+}
+.header .header-intro .header-right{
+  font-size: 20px;
+  line-height: 30px;
+}
+.blog-body {
+  background-color: white;
+  color: black;
+}
+
+.footer a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+}
+.footer a:hover {
+  background-color: orange;
+}
+
