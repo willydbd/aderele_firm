@@ -104,7 +104,7 @@
         <div class="float-right d-none d-sm-block">
             <b></b> 
         </div>
-        <strong>Copyright &copy; 2021 <a href="#">Aderele Firm</a>.</strong> All rights
+        <strong>Copyright &copy; {{ date('Y')}} <a href="#">Aderele Firm</a>.</strong> All rights
         reserved.
     </footer>
 </div>

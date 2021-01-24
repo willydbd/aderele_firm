@@ -60,10 +60,13 @@
             <hr>
           </div>
           <div class="search-blog">
-            <form method="" action="">
+            <form method="get" action="{{ url('/search') }}">
               <div class="form-group">
                 <label for="search_blog">SEARCH BLOG POST</label>
-                <input name="search_blog" type="text" class="form-control" id="search_blog" placeholder="Search blog">
+                <div class="input-group">
+                  <input name="search" type="text" class="form-control" id="search" placeholder="Search blog">
+                  <button class="btn btn-secondary input-group-addon" style="background-color: #ff8000;" type="submit"><span class="fa fa-search"></span></button>
+                </div>
               </div>
             </form>
           </div>
@@ -78,26 +81,28 @@
           </div>
           <hr>
           <div class="select-archived-blog">
-            <form method="" action="">
+            <<form method="get" action="{{ url('/archivedPosts') }}">
               <div class="form-group">
                 <label for="archives">ARCHIVES</label>
-                <select class="form-control" name="archived">
-                @foreach($blogcats as $blog)
-                  <option value="">{{ $blog->created_at->format('F, Y')}}</option>
-                @endforeach
+                <select class="form-control" name="archived"  onchange="this.form.submit()">
+                  <option value="">Select Month</option>
+                  @foreach($archives as $archive)
+                    <option value="{{ $archive->monthYear }}">{{ $archive->monthYear }}</option>
+                  @endforeach
+                
                 </select>
               </div>
             </form>
           </div>
           <hr>
           <div class="select-catogery">
-            <form method="" action="">
+            <form method="get" action="{{ url('/catSearch') }}">
               <div class="form-group">
                 <label for="category">CATEGORIES</label>
-                <select class="form-control" name="category">
+                <select class="form-control" name="category" onchange="this.form.submit()" >
                 <option value="">Select Category</option>
-                  @foreach($categories as $cat)
-                  <option value="{{ $cat->id}}">{{ $cat->name}}</option>
+                  @foreach($cats as $ct)
+                  <option value="{{ $ct->id }}">{{ $ct->name}}</option>
                   @endforeach
                 </select>
               </div>

@@ -73,7 +73,7 @@ class BlogController extends AppBaseController
 
         $blog = $this->blogRepository->create($input);
 
-        $blog->tags->sync($input->tags, false);
+        // $blog->tags->sync($input->tags, false);
 
         Flash::success('Blog saved successfully.');
 

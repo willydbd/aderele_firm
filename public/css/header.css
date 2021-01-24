@@ -224,6 +224,10 @@ display: block;
 
     font-size: 14px !important;
 }
+.search-blog{
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
   .connect-us a {
         color: #ff8000;
         font-weight: bold;

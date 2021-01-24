@@ -58,7 +58,8 @@
           <!-- <div class="col-md-7">
           </div> -->
           <div class="pull-right">
-              <h4> <a href="#">A.O. ADERELE & ASSOCIATES</a> </h4>
+            <img src="images/header2.png" alt="" style="width: 350px;">
+              <!-- <h4> <a href="#">A.O. ADERELE & ASSOCIATES</a> </h4> -->
           </div>
         </div>
       </div>
@@ -129,7 +130,7 @@
     <div class="footer">
       <div class="row ">
         <div class="col-md-9">
-          <span>Copyright &copy;Aderele Firm {{ date('Y')}} All rights reserved.</span> &nbsp
+          <span>Copyright &copy; {{ date('Y')}} Aderele Firm.  All rights reserved.</span> &nbsp
 
         </div>
         <span class="pull-left">

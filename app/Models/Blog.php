@@ -44,7 +44,8 @@ class Blog extends Model
         'slug',
         'body',
         'photo',
-        'status'
+        'status',
+        'monthYear'
     ];
 
     /**
@@ -61,7 +62,8 @@ class Blog extends Model
         'slug' => 'string',
         'body' => 'string',
         'photo' => 'string',
-        'status' => 'boolean'
+        'status' => 'boolean',
+        'monthYear' => 'string'
     ];
 
     /**
@@ -80,7 +82,8 @@ class Blog extends Model
         'status' => 'required|boolean',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
-        'updated_at' => 'nullable'
+        'updated_at' => 'nullable',
+        'monthYear' => 'nullable|string|max:255'
     ];
     /**
      * Get the categories that this blog belongs

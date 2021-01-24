@@ -21,10 +21,14 @@ Route::get('/', 'App\Http\Controllers\PagesController@landing');
 Route::get('/blogposts', 'App\Http\Controllers\PagesController@blogposts')->name('blogposts');
 Route::get('/blogpost/{id}', 'App\Http\Controllers\PagesController@blogpost')->name('blogpost');
 Route::get('/blogcat/{id}', 'App\Http\Controllers\PagesController@blogcat')->name('blogcat');
+Route::get('/catSearch', 'App\Http\Controllers\PagesController@catSearch')->name('catSearch');
 Route::get('/contact', 'App\Http\Controllers\PagesController@contact')->name('contact');
 Route::get('/feedback', 'App\Http\Controllers\PagesController@feedback')->name('feedback');
+Route::post('/clientMsg', 'App\Http\Controllers\PagesController@clientMsg')->name('clientMsg');
 Route::get('/ourpractices', 'App\Http\Controllers\PagesController@ourpractices')->name('ourpractices');
 Route::get('/practice/{id}', 'App\Http\Controllers\PagesController@practice')->name('practice');
+Route::get('/search', 'App\Http\Controllers\PagesController@search')->name('search');
+Route::get('archivedPosts', 'App\Http\Controllers\PagesController@archivedPosts')->name('archivedPosts');
 
 
 Auth::routes();

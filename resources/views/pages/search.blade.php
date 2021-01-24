@@ -3,11 +3,15 @@
 <div class="blog-body">
       <div class="row">
         <div class="blog col-md-9">
-            <span>Blogs</span>
+          @if(empty($blogs))
+           <h3>No result fould for: {{ $search }}</h3>
+          @else
+            <h3>Search Result for: {{ $search }}</h3>
+          @endif
             <hr>
             <!-- blog loop starts here -->
             @foreach($blogs as $blog)
-            <small class="month-archived">Monthly Archives: {{ $blog->monthYear}}</small>
+            <small class="month-archived">Monthly Archives: {{ $blog->created_at->format('F, Y')}}</small>
             <div class="post-date">Posted: {{ $blog->created_at->format('M d, Y')}}</div>
             @include('flash::message')
             <div class="post-title">
@@ -61,9 +65,9 @@
                 <div class="form-group">
                   <label for="search_blog">SEARCH BLOG POST</label>
                   <div class="input-group">
-                  <input name="search" type="text" class="form-control" id="search" placeholder="Search blog">
-                  <button class="btn btn-secondary input-group-addon" style="background-color: #ff8000;" type="submit"><span class="fa fa-search"></span></button>
-                </div>
+                    <input name="search" type="text" class="form-control" id="search" placeholder="Search blog">
+                    <button class="btn btn-secondary input-group-addon" style="background-color: #ff8000;" type="submit"><span class="fa fa-search"></span></button>
+                  </div>
                 </div>
               </form>
             </div>
@@ -86,7 +90,6 @@
                     @foreach($archives as $archive)
                       <option value="{{ $archive->monthYear }}">{{ $archive->monthYear }}</option>
                     @endforeach
-                  
                   </select>
                 </div>
               </form>

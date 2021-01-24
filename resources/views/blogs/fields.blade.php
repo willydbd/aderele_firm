@@ -32,6 +32,7 @@
 <div class="form-group col-12">
     {!! Form::label('title', 'Title:') !!}
     {!! Form::text('title', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
+    <input type="hidden" name="monthYear" value="{{ date('F, Y')}}">
 </div>
 
 <!-- Tags Field -->

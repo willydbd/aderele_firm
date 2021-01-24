@@ -2,7 +2,7 @@
       <div class="container col-md-8 col-md-offset-2">
       <div class="row ">
         <div class="copyright col-md-9">
-          <span><a href="#">Copyright &copy;Aderele Firm {{ date('Y')}} All rights reserved. </a></span>
+          <span><a href="#">Copyright &copy; {{ date('Y')}} Aderele Firm.  All rights reserved. </a></span>
         </div>
         <span class="footer-social pull-left">
           SOCIAL MEDIA:
