@@ -21,8 +21,10 @@ body {
   /* Add a black background color to the top navigation */
 .topnav {
 background-color: #ff8000;
-overflow: hidden;
+/* overflow: hidden; */
 /* min-height: 48px; */
+margin: 15px 10px;
+
 }
 
 /* Style the links inside the navigation bar */
@@ -50,7 +52,7 @@ display: none;
 /* Dropdown container - needed to position the dropdown content */
 .dropdown {
 float: left;
-overflow: hidden;
+/* overflow: hidden; */
 min-height: 48px;
 }
 
@@ -64,6 +66,9 @@ padding: 14px 16px;
 background-color: #ff8000;
 font-family: inherit;
 margin: 0;
+}
+.fa-caret-down{
+  font-size: 12px;
 }
 
 /* Style the dropdown content (hidden by default) */
@@ -90,6 +95,7 @@ text-align: left;
 .topnav a:hover, .dropdown:hover .dropbtn {
 background-color: orange;
 color: white;
+display: block;
 }
 
 /* Add a grey background to dropdown links on hover */
@@ -102,25 +108,45 @@ color: white;
 .dropdown:hover .dropdown-content {
 display: block;
 }
-
-/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
-@media screen and (max-width: 800px) {
-.topnav a:not(:first-child), .dropdown .dropbtn {
+.firm-name-bgScreen{
+   margin: 90px 10px 20px 30px;
+}
+/*Hide this logo on big screen*/
+@media screen and (min-width: 601px) {
+.firm-name{
+  /* margin: 90px 10px 20px 30px; */
+  display: none;
+}
+}
+/*Hide this logo on small screen*/
+@media screen and (max-width: 600px) {
+.firm-name-bgScreen{
+  display: none;
+}
+}
+/* When the screen is less than 600 pixels wide, hide all links. Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+.topnav a, .dropdown .dropbtn {
   display: none;
 }
 .topnav a.icon {
-  float: right;
+  float: left;
   display: block;
   font-size: 30px;
   background-color: orange;
 }
+.topnav{
+  width: 100%;
+}
 .firm-name{
-  margin: 10px 0px 20px 70px;
+  text-align: right;
+  margin: 10px 0px 20px 15px;
 }
 }
 
+
 /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
 .topnav.responsive {position: relative;}
 .topnav.responsive a.icon {
   position: absolute;
@@ -146,10 +172,6 @@ display: block;
   text-align: right;
 }
 }
-
-  .firm-name{
-    margin: 90px 10px 20px 30px;
-  }
   .firm-name a {
     text-decoration: none;
     /* font-size: 55; */
@@ -274,9 +296,11 @@ display: block;
   }
   .practice-body{
     color: black;
-    margin-left: 0px;
+    margin-left: 5px;
+    padding-left: 5px;
   }
   .practice{
+    margin-left: 5px;
     font-size: 16px;
     margin-top: 20px;
     padding-bottom: 0px;

@@ -26,7 +26,18 @@
     <div class="container col-md-8 col-md-offset-2">
       <div class="row">
         <div class="topnav" id="myTopnav">
-          <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+          <div class="row">
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+            <div class="firm-name" >
+              <!-- <div class="col-md-7">
+              </div> -->
+              <div class="">
+                <!-- <img class="" src="images/header.png" alt="" style="width: 370px;"> -->
+                  <h4> <b>A.O. ADERELE & ASSOCIATES</b> </h4>
+              </div>
+            </div>
+          </div>
+
       <a href="{{ url('/')}}" class="active">HOME</a>
 
       <a href="{{ url('/ourpractices')}}">PRACTICE</a>
@@ -35,25 +46,25 @@
       <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-      <a href="#">CONTRACT</a>
-      <a href="#">COMMERCIAL</a>
-      <a href="#">CRIMINAL</a>
-      <a href="#">GENERAL</a>
-      <a href="#">TAXATION</a>
-      <a href="#">WILLS & PROBATE & INHERITANCE</a>
+      <a href="{{ url('/blogcat/3') }}">CONTRACT</a>
+      <a href="{{ url('/blogcat/1') }}">COMMERCIAL</a>
+      <a href="{{ url('/blogcat/2') }}">CRIMINAL</a>
+      <a href="{{ url('/blogcat/5') }}">GENERAL</a>
+      <a href="{{ url('/blogcat/4') }}">TAXATION</a>
+      <a href="{{ url('/blogcat/6') }}">WILLS & PROBATE & INHERITANCE</a>
       </div>
       </div>
       <a href="{{ url('/contact')}}">CONTACT</a>
 
       </div>
-
-        <div class="firm-name">
-          <!-- <div class="col-md-7">
-          </div> -->
-          <div class="pull-right">
-              <h4> <a href="#">A.O. ADERELE & ASSOCIATES</a> </h4>
-          </div>
+      <div class="firm-name-bgScreen" >
+        <!-- <div class="col-md-7">
+        </div> -->
+        <div class="">
+          <!-- <img class="" src="images/header.png" alt="" style="width: 410px; "> -->
+            <h4> <b>A.O. ADERELE & ASSOCIATES</b> </h4>
         </div>
+      </div>
       </div>
     </div>
   </div>

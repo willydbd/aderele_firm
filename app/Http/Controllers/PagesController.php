@@ -16,34 +16,34 @@ class PagesController extends Controller
 {
     /** @var  PagesRepository */
     private $pageRepository;
-     
+
 
     public function landing(){
         $latest_supreme_judgements = Blog::where('status', true)->where('category_id', 7)->orderBy('id', 'desc')->take(3)->get();
-        
-        return view('pages.landing')->with('latest_supreme_judgements', $latest_supreme_judgements ); 
-        
+
+        return view('pages.landing')->with('latest_supreme_judgements', $latest_supreme_judgements );
+
     }
     /**
      * Handling all blog posts
      */
     public function blogposts(){
-        
+
         $cats = Category::all();
         $blogs = Blog::where('status', true)->orderBy('id', 'desc')->paginate(5);
         $recentposts = Blog::where('status', true)->orderBy('id', 'desc')->take(3)->get();
         $archives = Blog::select('monthYear')->distinct()->get();
-        
+
         return view('pages.blogposts')->with('blogs', $blogs)
         ->with('recentposts', $recentposts)
-        ->with('cats', $cats)     
+        ->with('cats', $cats)
         ->with('archives', $archives);
     }
     /**
      * Method handling single post
      */
     public function blogpost($id){
-        
+
         $blog = Blog::find($id);
         $recentposts = Blog::where('status', true)->orderBy('id', 'desc')->take(3)->get();
         if (empty($blog)) {
@@ -52,13 +52,13 @@ class PagesController extends Controller
             return redirect(url('/blogposts'));
         }
         return view('pages.blogpost')->with('blog', $blog)
-        ->with('recentposts', $recentposts);     
+        ->with('recentposts', $recentposts);
     }
     /**
      * Method handling individual category
      */
     public function blogcat($id){
-        
+
         $cats = Category::all();
         $cat = Category::find($id);
         $blogcats = Blog::where('status', true)->where('category_id', $id)->orderBy('id', 'desc')->paginate(5);
@@ -73,13 +73,13 @@ class PagesController extends Controller
         ->with('cat', $cat)
         ->with('cats', $cats)
         ->with('recentposts', $recentposts)
-        ->with('archives', $archives);     
+        ->with('archives', $archives);
     }
     /**
      * Method handling category search
      */
     public function catSearch(Request $request){
-        
+
         $id = $request->category;
         $cats = Category::all();
         $cat = Category::find($id);
@@ -95,21 +95,21 @@ class PagesController extends Controller
         ->with('cat', $cat)
         ->with('cats', $cats)
         ->with('recentposts', $recentposts)
-        ->with('archives', $archives);     
+        ->with('archives', $archives);
     }
     /**
      * Method handling contact page
      */
     public function contact(){
 
-        return view('pages.contact');     
+        return view('pages.contact');
     }
     /**
      * Method handling feedback page
      */
     public function feedback(){
 
-        return view('pages.feedback');     
+        return view('pages.feedback');
     }
     /**
      * handling practices method
@@ -120,7 +120,7 @@ class PagesController extends Controller
         $practices = Practice::paginate(5);
         return view('pages.practices')
         ->with('practices', $practices)
-        ->with('forTitles', $forTitles);     
+        ->with('forTitles', $forTitles);
     }
     /**
      * method handling the practice
@@ -129,7 +129,7 @@ class PagesController extends Controller
     public function practice($id){
         $forTitles = Practice::all();
         $practice = Practice::find($id);
-        return view('pages.practice')->with('practice', $practice)->with('forTitles', $forTitles);     
+        return view('pages.practice')->with('practice', $practice)->with('forTitles', $forTitles);
     }
 
     /**
@@ -151,16 +151,16 @@ class PagesController extends Controller
                 'msg_subject'=>  $request->msg_subject,
                 'client_message' =>   $request->client_message
             );
-        
+
             Mail::send('emails.enquiry', $data, function($message) use ($data) {
 
                 $message->from($data['client_email']);
-                $message->to('willydbd@yahoo.com');
+                $message->to('info@adrelefirm.com');
                 $message->subject($data['msg_subject']);
             });
             Flash::success('We would get back to you soon.Cheers!.');
             return redirect(url('/feedback'));
-      
+
     }
     /**
      * method handling search query
@@ -171,32 +171,32 @@ class PagesController extends Controller
         $search = $request->search;
         $blogs = Blog::where('title', 'LIKE', '%' .$search.'%')->orWhere('body', 'LIKE', '%' .$search.'%')->paginate(5);
         // $blogs->dd();
-        
+
         $recentposts = Blog::where('status', true)->orderBy('id', 'desc')->take(3)->get();
         $archives = Blog::select('monthYear')->distinct()->get();
-        
+
         return view('pages.search')->with('blogs', $blogs)
         ->with('recentposts', $recentposts)
         ->with('search', $search)
         ->with('cats', $cats)
-        ->with('archives', $archives);     
+        ->with('archives', $archives);
     }
     /**
      * Handling archived search posts
      */
     public function archivedPosts(Request $request){
-        
-        $monthYear = $request->archived; 
+
+        $monthYear = $request->archived;
         $cats = Category::all();
         $blogs = Blog::where('status', true)->where('monthYear', $monthYear)->orderBy('id', 'desc')->paginate(5);
         $recentposts = Blog::where('status', true)->orderBy('id', 'desc')->take(3)->get();
         $archives = Blog::select('monthYear')->distinct()->get();
-        
+
         return view('pages.blogposts')->with('blogs', $blogs)
         ->with('recentposts', $recentposts)
-        ->with('cats', $cats)     
+        ->with('cats', $cats)
         ->with('archives', $archives);
     }
-    
+
     // archivedPosts
 }
