@@ -69,16 +69,8 @@ class PagesController extends Controller
     public function blogcat($id){
 
         $cats = Category::all();
-        $cat = Category::find($id);
-        // $blogcats = Blog::where('status', true)->where('category_id', $id)->orderBy('id', 'desc')->paginate(5);
-
-        $blogcats= DB::table('blog_category')
-                    ->join('blogs', 'blog_category.blog_id', '=','blogs.id')
-                    ->join('categories', 'blog_category.category_id', '=', 'categories.id' )
-                    ->where('blogs.status', '=', true)
-                    ->where('categories.id', '=', $id)
-                    ->paginate(5);
-        // dd($blogcats);
+        $cat= Category::find($id);
+        $blogs = $cat->blogs()->where('status', true)->paginate(10);
         $recentposts = Blog::where('status', true)->orderBy('id', 'desc')->take(3)->get();
         $archives = Blog::select('monthYear')->distinct()->get();
         if (empty($cat)) {
@@ -86,10 +78,11 @@ class PagesController extends Controller
 
             return redirect(url('/blogposts'));
         }
-        return view('pages.blogcat')->with('blogcats', $blogcats)
+        return view('pages.blogcat')
         ->with('cat', $cat)
         ->with('cats', $cats)
         ->with('recentposts', $recentposts)
+        ->with('blogs', $blogs)
         ->with('archives', $archives);
     }
     /**
@@ -100,6 +93,7 @@ class PagesController extends Controller
         $id = $request->category;
         $cats = Category::all();
         $cat = Category::find($id);
+        $blogs = $cat->blogs()->where('status', true)->paginate(10);
         $recentposts = Blog::where('status', true)->orderBy('id', 'desc')->take(3)->get();
         $archives = Blog::select('monthYear')->distinct()->get();
         if (empty($cat)) {
@@ -107,7 +101,7 @@ class PagesController extends Controller
 
             return redirect(url('/blogposts'));
         }
-        return view('pages.blogcat')->with('blogcats', $blogcats)
+        return view('pages.blogcat')->with('blogs', $blogs)
         ->with('cat', $cat)
         ->with('cats', $cats)
         ->with('recentposts', $recentposts)

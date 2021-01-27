@@ -9,7 +9,8 @@
 
             <hr>
             <!-- blog loop starts here -->
-            @foreach($cat->blogs as $blog)
+            {{-- @foreach($cat->blogs as $blog) --}}
+            @foreach($blogs as $blog)
             <small class="month-archived">Post Categorized: {{ $blog->categories->implode('name', ', ') }}</small>
             <div class="post-date">Posted: {{ $blog->created_at->format('M d, Y')}}</div>
             @include('flash::message')
@@ -37,7 +38,7 @@
             </div>
             @endforeach
             <!-- blog loop ends here -->
-          {{-- {{ $blogcats->links() }}  --}}
+          {{ $blogs->links() }} 
         </div>
         <div class="related-post col-md-3">
           <div class="related-line">

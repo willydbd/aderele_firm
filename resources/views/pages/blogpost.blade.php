@@ -19,7 +19,9 @@
             </div>
             <div class="post-cat">
               Posted in
-              <a href="#">{{$blog->category['name']}}</a>
+              @foreach ($blog->categories as $blogCats )
+              <a href="{{ url('/blogcat/'.$blogCats->id) }}">{{$blogCats->name}}</a> &nbsp;
+              @endforeach
 
             </div>
             <div class="last-line">
