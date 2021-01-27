@@ -9,8 +9,8 @@
 
             <hr>
             <!-- blog loop starts here -->
-            @foreach($blogcats as $blog)
-            <small class="month-archived">Post Categorized: {{$blog->category['name']}}</small>
+            @foreach($cat->blogs as $blog)
+            <small class="month-archived">Post Categorized: {{ $blog->categories->implode('name', ', ') }}</small>
             <div class="post-date">Posted: {{ $blog->created_at->format('M d, Y')}}</div>
             @include('flash::message')
             <div class="post-title">
@@ -31,17 +31,13 @@
               </p>
               
             </div>
-            <div class="post-cat">
-              Posted in
-              <a href="#">{{$blog->category['name']}}</a>
-
-            </div>
+            
             <div class="last-line">
               <hr>
             </div>
             @endforeach
             <!-- blog loop ends here -->
-          {{ $blogcats->links() }} 
+          {{-- {{ $blogcats->links() }}  --}}
         </div>
         <div class="related-post col-md-3">
           <div class="related-line">
@@ -81,7 +77,7 @@
           </div>
           <hr>
           <div class="select-archived-blog">
-            <<form method="get" action="{{ url('/archivedPosts') }}">
+            <form method="get" action="{{ url('/archivedPosts') }}">
               <div class="form-group">
                 <label for="archives">ARCHIVES</label>
                 <select class="form-control" name="archived"  onchange="this.form.submit()">

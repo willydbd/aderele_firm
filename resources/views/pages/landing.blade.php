@@ -113,7 +113,7 @@
             <div class="recent_news">
 
               @foreach($latest_supreme_judgements as $supreme)
-                <p><a href="{{ url('/blogpost/' .$supreme->id) }}">{{ $supreme->title }}</a></p>
+                <p><a href="{{ url('/blogpost/' .$supreme->blog_id) }}">{{ $supreme->title }}</a></p>
               @endforeach
 
 

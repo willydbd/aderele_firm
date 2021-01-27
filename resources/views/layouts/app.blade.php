@@ -46,6 +46,7 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
 @if(Auth::check())
+@if( Auth::user()->id == 1)
 <div class="wrapper">
     <!-- Main Header -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -173,6 +174,7 @@
 
 @stack('page_scripts')
 
+@endif
 @else
 <script>window.location = "/login";</script>
 @endif

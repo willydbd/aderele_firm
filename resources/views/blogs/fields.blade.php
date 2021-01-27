@@ -36,10 +36,10 @@
 </div>
 
 <!-- Tags Field -->
-<!-- <div class="form-group col-sm-6">
-    {!! Form::label('tags', 'Tags:') !!}
-    {!! Form::text('tags', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-</div> -->
+ {{-- <div class="form-group col-sm-6">
+    {!! Form::label('slug', 'Slug:') !!}
+    {!! Form::text('slug', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
+</div>  --}}
 
 <!-- Body Field -->
 <div class="form-group col-sm-12 col-lg-12" >
@@ -62,19 +62,25 @@
 </div> -->
 
 <div class="form-group col-sm-12 col-md-6">
-    {!! Form::label('category_id', 'Category:') !!}
-    {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
+    {!! Form::label('categories', 'Category:') !!}
+    {!! Form::select('categories', $categories, null, ['class' => 'form-control js-example-basic-multiple', 'name' => 'categories[]', 'multiple'=>'multiple']) !!}
 </div>
 
 
 <div class="form-group col-sm-12 col-md-6">
-    {!! Form::label('tag_id', 'Tag:') !!}
+    {!! Form::label('tags', 'Tag:') !!}
+    {!! Form::select('tags', $tags, null, ['class' => 'form-control js-example-basic-multiple', 'name' => 'tags[]', 'multiple'=>'multiple']) !!}
+</div>
+
+
+{{-- <div class="form-group col-sm-12 col-md-6">
+    {!! Form::label('tags', 'Tags:') !!}
     <select class="form-control js-example-basic-multiple" name="tags[]" multiple="multiple">
     @foreach ( $tags as $tag )
     <option value="{{ $tag->id }}" >{{ $tag->name }}</option>
     @endforeach
     </select>
-</div>
+</div> --}}
 
 
 <!-- Photo Field -->

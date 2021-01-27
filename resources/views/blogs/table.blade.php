@@ -6,10 +6,11 @@
         <!-- <th>Author</th> -->
         <!-- <th>Published By</th> -->
         <th>Title</th>
-        <!-- <th>Tags</th> -->
+        
         <th>Body</th>
         <!-- <th>Photo</th> -->
         <th>Status</th>
+        <th>Tags</th> 
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -17,16 +18,17 @@
         @foreach($blogs as $blog)
             <tr>
             
-            <td>{{ $blog->category['name'] }}</td>
+            <td>{{ $blog->categories->implode('name', ',') }}</td>
             <td style="text-transform: capitalize">
             <a href="{{ route('blogs.show', [$blog->id]) }}">
                 {{ $blog->title }}
             </a>
             </td>
             <!-- <td>{{ $blog->author }}</td>
-            <td>{{ $blog->publisher }}</td> -->
+            <td>{{ $blog->publisher }}</td> --> 
             
-            <!-- <td>{{ $blog->tags }}</td> -->
+            
+
             <td>
                 <!-- {!! $blog->body !!} -->
             {!! \Illuminate\Support\Str::limit($blog->body, 350, $end='...') !!}
@@ -39,6 +41,14 @@
                 Offline
             @endif            
             </td>
+            <td>
+                {{-- use implode method of laravel instead of foreach so as to add comma to each output except the last one --}}
+            {{-- <a href=" {{ route('tags.show', [$tag->id]) }}">  --}}
+                
+                {{ $blog->tags->implode('name', ',') }}
+            {{-- </a> --}}
+                        
+        </td>
                 <td width="120">
                     {!! Form::open(['route' => ['blogs.destroy', $blog->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

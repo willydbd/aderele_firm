@@ -26,8 +26,11 @@
             </div>
             <div class="post-cat">
               Posted in
-              <a href="{{ url('/blogcat/'.$blog->category_id) }}">{{$blog->category['name']}}</a>
-
+              @foreach ($blog->categories as $blogCats )
+              <a href="{{ url('/blogcat/'.$blogCats->id) }}">{{$blogCats->name}}</a> &nbsp;
+              @endforeach
+                            
+              {{-- {{ $blog->categories->implode('name', ', ') }} --}}
             </div>
             <div class="last-line">
               <hr>

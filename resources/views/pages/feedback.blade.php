@@ -25,31 +25,51 @@
             <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.7882448962746!2d7.464495113990142!3d9.083045993483395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0aef1fd202e9%3A0x8fb6ddea1d52f4ad!2sAUA%20Plaza!5e0!3m2!1sen!2sng!4v1610298884049!5m2!1sen!2sng" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
             <div class="">
               @include('flash::message')
+              @if($errors->count())
+              @foreach($errors->all() as $error)
+                <p class="alert alert-danger font lato-normal center">{{ $error }}</p>
+              @endforeach
+              @endif
               <form action="{{ url('/clientMsg') }}" method="POST">
 
                   <div class="form-row">
                     {{ csrf_field() }}
                     <div class="form-group col-md-6">
-                      <label for="client_name">Name</label>
-                      <input name="client_name" type="text" class="form-control" placeholder="Your name">
+                      <label for="name">Name</label>
+                      <input value="{{ old ('name')}}" name="name" type="text" class="form-control" placeholder="Your name">
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="client_phone">Phone No:</label>
-                      <input name="client_phone" type="number" class="form-control" placeholder="Your phone number">
+                      <label for="phone">Phone No:</label>
+                      <input value="{{old ('phone')}}" name="phone" type="number" class="form-control" placeholder="Your phone number">
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="msg_subject">Subject</label>
-                      <input name="msg_subject" type="text" class="form-control" placeholder="Message Title">
+                      <label for="ubject">Subject</label>
+                      <input value="{{ old ('subject')}}" name="subject" type="text" class="form-control" placeholder="Message Title">
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="client_email">Email</label>
-                      <input name="client_email" type="email" class="form-control" placeholder="Your email">
+                      <label for="email">Email</label>
+                      <input value="{{ old('email')}}" name="email" type="email" class="form-control" placeholder="Your email">
                     </div>
-                    
+
                   </div>
                   <div class="form-group ">
                     <label for="message">Message</label>
-                    <textarea class="form-control" placeholder="Type in your message here" name="client_message" rows="8" cols="80"></textarea>
+                    <textarea value="{{ old('message')}}" class="form-control" placeholder="Type in your message here" name="message" rows="8" cols="80"></textarea>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group ">
+                      <span style="color: black; font-weight: bold; ">Check the option you'd classified your message to be</span> <br>
+                        <div class="form-check">
+                            {!! Form::hidden('enquiry', 0, ['class' => 'form-check-input']) !!}
+                            {!! Form::checkbox('enquiry', '1', null, ['value'=> 'old(enquiry)', 'class' => 'form-check-input']) !!}
+                            {!! Form::label('enquiry', 'Enquiry', ['class' => 'form-check-label']) !!}
+                              &nbsp; &nbsp;&nbsp;&nbsp;
+
+                          {!! Form::hidden('info', 0, ['class' => 'form-check-input']) !!}
+                          {!! Form::checkbox('info', '1', null, ['value'=> 'old(enquiry)', 'class' => 'form-check-input']) !!}
+                          {!! Form::label('info', 'Info', ['class' => 'form-check-label']) !!}
+                        </div>
+                    </div>
                   </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>

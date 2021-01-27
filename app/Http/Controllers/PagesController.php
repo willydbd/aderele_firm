@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Practice;
+use App\Models\Client;
 use Mail;
+use Validator;
 
 
 
@@ -19,8 +21,15 @@ class PagesController extends Controller
 
 
     public function landing(){
-        $latest_supreme_judgements = Blog::where('status', true)->where('category_id', 7)->orderBy('id', 'desc')->take(3)->get();
+        // $latest_supreme_judgements = Blog::where('status', true)->where('category_id', 7)->orderBy('id', 'desc')->take(3)->get();
 
+        $latest_supreme_judgements = DB::table('blog_category')
+                                        ->join('blogs', 'blog_category.blog_id', '=','blogs.id')
+                                        ->join('categories', 'blog_category.category_id', '=', 'categories.id' )
+                                        ->where('blogs.status', '=', true)
+                                        ->where('categories.id', '=', 7)
+                                        ->take(3)->get();
+        // dd($latest_supreme_judgements);
         return view('pages.landing')->with('latest_supreme_judgements', $latest_supreme_judgements );
 
     }
@@ -61,14 +70,22 @@ class PagesController extends Controller
 
         $cats = Category::all();
         $cat = Category::find($id);
-        $blogcats = Blog::where('status', true)->where('category_id', $id)->orderBy('id', 'desc')->paginate(5);
+        // $blogcats = Blog::where('status', true)->where('category_id', $id)->orderBy('id', 'desc')->paginate(5);
+
+        $blogcats= DB::table('blog_category')
+                    ->join('blogs', 'blog_category.blog_id', '=','blogs.id')
+                    ->join('categories', 'blog_category.category_id', '=', 'categories.id' )
+                    ->where('blogs.status', '=', true)
+                    ->where('categories.id', '=', $id)
+                    ->paginate(5);
+        // dd($blogcats);
         $recentposts = Blog::where('status', true)->orderBy('id', 'desc')->take(3)->get();
         $archives = Blog::select('monthYear')->distinct()->get();
-        // if (empty($blog)) {
-        //     Flash::error('Posts to this category not found');
+        if (empty($cat)) {
+            Flash::error('Posts to this category not found');
 
-        //     return redirect(url('/blogposts'));
-        // }
+            return redirect(url('/blogposts'));
+        }
         return view('pages.blogcat')->with('blogcats', $blogcats)
         ->with('cat', $cat)
         ->with('cats', $cats)
@@ -83,14 +100,13 @@ class PagesController extends Controller
         $id = $request->category;
         $cats = Category::all();
         $cat = Category::find($id);
-        $blogcats = Blog::where('status', true)->where('category_id', $id)->orderBy('id', 'desc')->paginate(5);
         $recentposts = Blog::where('status', true)->orderBy('id', 'desc')->take(3)->get();
         $archives = Blog::select('monthYear')->distinct()->get();
-        // if (empty($blog)) {
-        //     Flash::error('Posts to this category not found');
+        if (empty($cat)) {
+            Flash::error('Posts to this category not found');
 
-        //     return redirect(url('/blogposts'));
-        // }
+            return redirect(url('/blogposts'));
+        }
         return view('pages.blogcat')->with('blogcats', $blogcats)
         ->with('cat', $cat)
         ->with('cats', $cats)
@@ -137,25 +153,45 @@ class PagesController extends Controller
      */
 
     public function clientMsg(Request $request){
-        $this->validate($request, [
-            'client_email'=> 'email|required',
-            'client_phone'=> 'numeric|size:11',
-            'msg_subject' => 'required',
-            'client_message' => 'min: 10'
-            ]);
+
+        $request_copy = $request;
+        //define rules for validation
+        $rules= array(
+            'email'=> 'email',
+            'phone'=> 'size:11',
+            'subject' => 'required',
+            'message' => 'min: 10',
+            'enquiry'  => 'exclude_unless: info, true|required',
+            'info'  => 'exclude_unless: enquiry, true|required'
+          );
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()){
+          return redirect(url('/feedback'))->withInput()->withErrors($validator);
+        }
+
+            //create Client
+            $client = New Client;
+            $client->name =$request_copy->input('name');
+            $client->msg_subject =$request_copy->input('subject');
+            $client->phone =$request_copy->input('phone');
+            $client->email =$request_copy->input('email');
+            $client->enquiry =$request_copy->input('enquiry');
+            $client->info =$request_copy->input('info');
+            $client->message =$request_copy->input('message');
+            $client->save();
 
             $data = array(
-                'client_name'=> $request->client_name,
-                'client_phone'=>  $request->client_phone,
-                'client_email'=> $request->client_email,
-                'msg_subject'=>  $request->msg_subject,
-                'client_message' =>   $request->client_message
+                'client_name'=> $request->name,
+                'client_phone'=>  $request->phone,
+                'client_email'=> $request->email,
+                'msg_subject'=>  $request->subject,
+                'client_message' =>   $request->message
             );
-
+            
             Mail::send('emails.enquiry', $data, function($message) use ($data) {
-
+            
                 $message->from($data['client_email']);
-                $message->to('info@adrelefirm.com');
+                $message->to('willydbd@yahoo.com');
                 $message->subject($data['msg_subject']);
             });
             Flash::success('We would get back to you soon.Cheers!.');

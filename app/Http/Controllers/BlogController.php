@@ -35,7 +35,7 @@ class BlogController extends AppBaseController
     public function index(Request $request)
     {
         // $blogs = $this->blogRepository->all();
-        $blogs = Blog::orderBy('id', 'desc')->paginate(5);
+        $blogs = Blog::orderBy('id', 'desc')->paginate(10);
 
         return view('blogs.index')
             ->with('blogs', $blogs);
@@ -54,7 +54,12 @@ class BlogController extends AppBaseController
         foreach($cats as $cat){
             $categories[$cat->id] = $cat->name;
         }
-        $tags = Tag::all();
+        $tagsss = Tag::all();
+        $tags = array();
+        foreach($tagsss as $tag){
+            $tags[$tag->id] = $tag->name;
+        }
+
         return view('blogs.create')->with('cats', $cats)
         ->with('tags', $tags)
         ->with('categories', $categories);
@@ -68,12 +73,14 @@ class BlogController extends AppBaseController
      * @return Response
      */
     public function store(CreateBlogRequest $request)
-    {
+    {   
+        // dd($request);
         $input = $request->all();
 
         $blog = $this->blogRepository->create($input);
 
-        // $blog->tags->sync($input->tags, false);
+        $blog->categories()->sync($request->categories, false);
+        $blog->tags()->sync($request->tags, false);
 
         Flash::success('Blog saved successfully.');
 
@@ -117,7 +124,11 @@ class BlogController extends AppBaseController
             $categories[$cat->id] = $cat->name;
         }
         
-        $tags = Tag::all();
+        $tagsss = Tag::all();
+        $tags = array();
+        foreach($tagsss as $tag){
+            $tags[$tag->id] = $tag->name;
+        }
         if (empty($blog)) {
             Flash::error('Blog not found');
 
@@ -148,6 +159,9 @@ class BlogController extends AppBaseController
         }
 
         $blog = $this->blogRepository->update($request->all(), $id);
+        
+        $blog->tags()->sync($request->tags, false);
+        $blog->categories()->sync($request->categories, false);
 
         Flash::success('Blog updated successfully.');
 

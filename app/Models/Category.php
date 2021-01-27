@@ -59,11 +59,11 @@ class Category extends Model
         'updated_at' => 'nullable'
     ];
     /**
-     * Get the category that owns this course
+     * Define the manyToMany relationship for blog. and categories
      */
-    // public function blog()
-    // {
-    //     return $this->belongsTo('App\Models\Blog');
-    // }
+    public function blogs()
+    {
+        return $this->belongsToMany('App\Models\Blog');
+    }
     
 }
