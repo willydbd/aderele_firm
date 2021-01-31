@@ -22,12 +22,8 @@
 
 <body>
   <div class="main-header">
-
-
     <div class="container col-md-8 col-md-offset-2">
-
       <div class="row">
-
         <div class="topnav" id="myTopnav">
 
       <div class="row">
@@ -36,8 +32,8 @@
           <!-- <div class="col-md-7">
           </div> -->
           <div class="">
-            <!-- <img class="" src="images/header.png" alt="" style="width: 250px;"> -->
-              <h4> <b>A.O. ADERELE & ASSOCIATES</b> </h4>
+            <img class="" src="images/header.png" alt="" style=""> 
+              {{-- <h4> <b>A.O. ADERELE & ASSOCIATES</b> </h4> --}}
           </div>
         </div>
 
@@ -142,7 +138,7 @@
           <span>Copyright &copy; {{ date('Y')}} Aderele Firm.  All rights reserved.</span> &nbsp
 
         </div>
-        <span class="pull-left">
+        <span class="footer-social pull-left">
           SOCIAL MEDIA:
           <a href="https://www.linkedin.com/in/adewale-aderele-bb454b203/" target="_blank"><i class="fa fa-linkedin" style="font-size:28px;"></i></a>&nbsp
           <a href="https://twitter.com/aderele_o" target="_blank"><i class="fa fa-twitter" style="font-size:28px;"></i></a>

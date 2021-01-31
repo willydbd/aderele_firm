@@ -2,6 +2,7 @@
     <table class="table" id="clients-table">
         <thead>
             <tr>
+                <th>S/N</th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
@@ -9,18 +10,22 @@
               <th>Message</th>
               {{-- <th>Subscribed</th> --}}
               <th>Enquiry</th>
-              <th>Info</th>
+              <th>Seeking Legal Advice</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
+        @php
+            $i = 1;
+        @endphp
         @foreach($clients as $client)
             <tr>
-                <td>{{ $client->name }}</td>
-                <td>{{ $client->email }}</td>
+                <td>{{ $i }}</td>
+                <td>{!! $client->name !!}</td>
+                <td>{!! $client->email !!}</td>
                 <td>{{ $client->phone }}</td>
-                <td>{{ $client->msg_subject }}</td>
-                <td>{{ $client->message }}</td>
+                <td>{!! $client->msg_subject !!}</td>
+                <td>{!! $client->message !!}</td>
                 {{-- <td>{{ $client->subscribed }}</td> --}}
                 <td>
                     @if($client->enquiry == 1)
@@ -50,6 +55,10 @@
                     {!! Form::close() !!}
                 </td>
             </tr>
+            @php
+                 $i++;
+            @endphp
+           
         @endforeach
         </tbody>
     </table>

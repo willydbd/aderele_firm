@@ -11,6 +11,7 @@ use App\Models\Practice;
 use App\Models\Client;
 use Mail;
 use Validator;
+use Purifier;
 
 
 
@@ -41,7 +42,7 @@ class PagesController extends Controller
         $cats = Category::all();
         $blogs = Blog::where('status', true)->orderBy('id', 'desc')->paginate(5);
         $recentposts = Blog::where('status', true)->orderBy('id', 'desc')->take(3)->get();
-        $archives = Blog::select('monthYear')->distinct()->get();
+        $archives = Blog::select('monthYear')->orderBy('id', 'desc')->get();
 
         return view('pages.blogposts')->with('blogs', $blogs)
         ->with('recentposts', $recentposts)
@@ -55,20 +56,28 @@ class PagesController extends Controller
 
         $blog = Blog::find($id);
         $recentposts = Blog::where('status', true)->orderBy('id', 'desc')->take(3)->get();
+        
+        $relatedposts = Blog::whereHas('tags', function ($t) use ($blog) {
+            return $t->whereIn('name', $blog->tags->pluck('name')); 
+        })
+        ->where('id', '!=', $blog->id) // So you won't fetch same post
+        ->inRandomOrder()->take(3)->get();
+
         if (empty($blog)) {
             Flash::error('Post not found');
 
             return redirect(url('/blogposts'));
         }
         return view('pages.blogpost')->with('blog', $blog)
-        ->with('recentposts', $recentposts);
+        ->with('recentposts', $recentposts)
+        ->with('relatedposts', $relatedposts);
     }
     /**
      * Method handling individual category
      */
     public function blogcat($id){
 
-        $cats = Category::all();
+        $cats = Category::orderBy('id', 'desc')->get();
         $cat= Category::find($id);
         $blogs = $cat->blogs()->where('status', true)->paginate(10);
         $recentposts = Blog::where('status', true)->orderBy('id', 'desc')->take(3)->get();
@@ -154,7 +163,7 @@ class PagesController extends Controller
             'email'=> 'email',
             'phone'=> 'size:11',
             'subject' => 'required',
-            'message' => 'min: 10',
+            'message' => 'min: 3',
             'enquiry'  => 'exclude_unless: info, true|required',
             'info'  => 'exclude_unless: enquiry, true|required'
           );
@@ -165,13 +174,13 @@ class PagesController extends Controller
 
             //create Client
             $client = New Client;
-            $client->name =$request_copy->input('name');
-            $client->msg_subject =$request_copy->input('subject');
+            $client->name =Purifier::clean($request_copy->input('name'));
+            $client->msg_subject =Purifier::clean($request_copy->input('subject'));
             $client->phone =$request_copy->input('phone');
-            $client->email =$request_copy->input('email');
+            $client->email =Purifier::clean($request_copy->input('email'));
             $client->enquiry =$request_copy->input('enquiry');
             $client->info =$request_copy->input('info');
-            $client->message =$request_copy->input('message');
+            $client->message =Purifier::clean($request_copy->input('message'));
             $client->save();
 
             $data = array(
@@ -180,14 +189,23 @@ class PagesController extends Controller
                 'client_email'=> $request->email,
                 'msg_subject'=>  $request->subject,
                 'client_message' =>   $request->message
-            );
-            
+             );
+           
             Mail::send('emails.enquiry', $data, function($message) use ($data) {
             
-                $message->from($data['client_email']);
-                $message->to('willydbd@yahoo.com');
-                $message->subject($data['msg_subject']);
+                $message->from('enquiry@aderelefirm.com');
+                $message->to('enquiry@aderelefirm.com')
+                        ->cc('aregbesolaokikiolu@gmail.com')
+                        ->subject($data['msg_subject']);
             });
+            Mail::send('emails.customer_enquiry', $data, function($message) use ($data) {
+            
+                $message->from('enquiry@aderelefirm.com');
+                $message->to($data['client_email'])
+                        ->subject('Re:' .$data['msg_subject']);
+            });
+            
+
             Flash::success('We would get back to you soon.Cheers!.');
             return redirect(url('/feedback'));
 
@@ -228,5 +246,5 @@ class PagesController extends Controller
         ->with('archives', $archives);
     }
 
-    // archivedPosts
+
 }

@@ -117,15 +117,28 @@ display: block;
   /* margin: 90px 10px 20px 30px; */
   display: none;
 }
+.contact-map-small-screen{
+  display: none;
+}
 }
 /*Hide this logo on small screen*/
 @media screen and (max-width: 600px) {
 .firm-name-bgScreen{
   display: none;
 }
+.contact-map{
+  display: none;
+}
 }
 /* When the screen is less than 600 pixels wide, hide all links. Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 600px) {
+  .topnav{
+    /* padding-left: 5px; */
+    /* margin-left: 10px; */
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-top: 5px;
+  }
 .topnav a, .dropdown .dropbtn {
   display: none;
 }
@@ -136,15 +149,22 @@ display: block;
   background-color: orange;
 }
 .topnav{
-  width: 100%;
+  width:100%;
 }
 .firm-name{
   text-align: right;
-  margin: 10px 0px 20px 15px;
+  margin: 10px 0px 0px 15px;
+}
+.main-feedback{
+  margin-left: 2px;
+  font-size: 16px;
+  margin-top: 20px;
+  padding-bottom: 0px;
+}
+.feedback{
+  margin-left: 0px;
 }
 }
-
-
 /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 @media screen and (max-width: 600px) {
 .topnav.responsive {position: relative;}
@@ -299,7 +319,18 @@ display: block;
     margin-left: 5px;
     padding-left: 5px;
   }
+  .feedback-body{
+    color: black;
+    /* margin-left: 5px; */
+    /* padding-left: 5px; */
+  }
   .practice{
+    margin-left: 5px;
+    font-size: 16px;
+    margin-top: 20px;
+    padding-bottom: 0px;
+  }
+  .main-feedback{
     margin-left: 5px;
     font-size: 16px;
     margin-top: 20px;
@@ -357,7 +388,7 @@ display: block;
     color: black;
   }
   .feedback{
-    margin-left: 80px;
+    margin-left: 25px;
   }
   .feedback input:focus, .feedback textarea:focus{
     border-color:  #ff8000;
@@ -386,6 +417,9 @@ display: block;
       color: white;
       font-weight: bold;
   } */
+  .footer-social{
+    margin-left: 15px;
+  }
   .footer-social a:hover {
     background-color: orange;
   }
@@ -394,6 +428,7 @@ display: block;
     text-transform: uppercase;
     color: white;
     font-weight: bold;
+
 }
 .copyright a{
   text-decoration: none;

@@ -27,6 +27,7 @@
             <div class="card-body p-0">
                 @include('clients.table')
 
+                {{ $clients->links() }}
                 <div class="card-footer clearfix float-right">
                     <div class="float-right">
                         

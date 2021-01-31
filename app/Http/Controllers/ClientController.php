@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Client;
 
 class ClientController extends AppBaseController
 {
@@ -29,7 +30,8 @@ class ClientController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $clients = $this->clientRepository->all();
+        // $clients = $this->clientRepository->all();
+        $clients = Client::orderBy('id', 'desc')->paginate(20);
 
         return view('clients.index')
             ->with('clients', $clients);

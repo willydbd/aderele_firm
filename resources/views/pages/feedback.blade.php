@@ -17,8 +17,8 @@
           <span>enquiry@aderelefirm.com</span>
       </div>
     </div>
-    <div class="practice col-xs-12 col-md-8">
-    <div class="practice-body">
+    <div class="main-feedback col-xs-12 col-md-8">
+    <div class="feedback-body">
       <div class="row">
 
           <div class="feedback form">
@@ -58,16 +58,19 @@
                   </div>
                   <div class="form-row">
                     <div class="form-group ">
-                      <span style="color: black; font-weight: bold; ">Check the option you'd classified your message to be</span> <br>
+                      <span style="color: black; font-weight: bold; ">Check the option you'd classify your message to be?</span> <br>
                         <div class="form-check">
                             {!! Form::hidden('enquiry', 0, ['class' => 'form-check-input']) !!}
                             {!! Form::checkbox('enquiry', '1', null, ['value'=> 'old(enquiry)', 'class' => 'form-check-input']) !!}
-                            {!! Form::label('enquiry', 'Enquiry', ['class' => 'form-check-label']) !!}
-                              &nbsp; &nbsp;&nbsp;&nbsp;
-
+                            {!! Form::label('enquiry', 'Are you making enquiry? ', ['class' => 'form-check-label']) !!}
+                          
+                        </div>
+                      
+                        <span>OR</span>
+                        <div class="form-check">
                           {!! Form::hidden('info', 0, ['class' => 'form-check-input']) !!}
-                          {!! Form::checkbox('info', '1', null, ['value'=> 'old(enquiry)', 'class' => 'form-check-input']) !!}
-                          {!! Form::label('info', 'Info', ['class' => 'form-check-label']) !!}
+                          {!! Form::checkbox('info', '1', null, ['value'=> 'old(info)', 'class' => 'form-check-input']) !!}
+                          {!! Form::label('info', 'Are you seeking Legal Advice?', ['class' => 'form-check-label']) !!}
                         </div>
                     </div>
                   </div>

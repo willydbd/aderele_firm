@@ -38,7 +38,15 @@
           </div>
 
           <div class="recent-post-all-blogs">
-            <span style="color: #ff8000;">RECENT POST</span>
+            <span style="color: #ff8000;">RELATED POSTS</span>
+            <ul>
+            @foreach($relatedposts as $relatedpost)
+              <li><a href="{{ url('/blogpost/'.$relatedpost->id) }}">{{ $relatedpost->title}}</a></li>
+              @endforeach
+            </ul>
+          </div>
+          <div class="recent-post-all-blogs">
+            <span style="color: #ff8000;">MOST RECENT POSTS</span>
             <ul>
             @foreach($recentposts as $recentpost)
               <li><a href="{{ url('/blogpost/'.$recentpost->id) }}">{{ $recentpost->title}}</a></li>

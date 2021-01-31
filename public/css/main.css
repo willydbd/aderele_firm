@@ -18,7 +18,7 @@ body {
 .topnav {
 background-color: #ff8000;
 /* overflow: hidden; */
-min-height: 48px;
+/* min-height: 48px; */
 }
 
 /* Style the links inside the navigation bar */
@@ -122,6 +122,15 @@ display: block;
 }
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 600px) {
+  body{
+    margin: 15px 5px;
+  }
+.topnav{
+  padding-left: 5px;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
 .topnav a, .dropdown .dropbtn {
 display: none;
 }
@@ -133,7 +142,7 @@ background-color: orange;
 }
 .firm-name{
 text-align: right;
-margin: 10px 0px 20px 15px;
+margin: 10px 0px 0px 0px;
 }
 }
 
@@ -252,4 +261,7 @@ hr{
 }
 .footer a:hover {
   background-color: orange;
+}
+.footer-social{
+  margin-left: 15px;
 }
