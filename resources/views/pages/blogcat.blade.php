@@ -23,7 +23,7 @@
               <a href="#" target="_blank"><i class="fa fa-share" style="font-size:18px;">Share</i></a> -->
               
                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis_inline_share_toolbox"></div>
+                <div class="addthis_inline_share_toolbox" data-title="{{ $blog->title }}"></div>
             
             </div>
             <div class="blog-post">

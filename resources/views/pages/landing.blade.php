@@ -32,7 +32,7 @@
           <!-- <div class="col-md-7">
           </div> -->
           <div class="">
-            <img class="" src="images/header.png" alt="" style=""> 
+            <img class="" src="images/header.png" alt="" style="">
               {{-- <h4> <b>A.O. ADERELE & ASSOCIATES</b> </h4> --}}
           </div>
         </div>
@@ -123,8 +123,14 @@
         </div>
         <div class="header-intro col-xs-12 col-md-6">
           <div class="header-right">
-            <p>Schlam Stone & Dolan is a preeminent boutique law firm with the experience, creativity, and problem-solving skills to get successful results quickly and efficiently. Our attorneys are seasoned litigators, transactional lawyers, and counsellors who have honed their skills at New York’s elite big firms and in public service, including many who have held leadership positions at U.S. Attorneys’ and District Attorneys’ offices.</p>
-            <p>Our experience allows us to staff cases leanly, so that clients get maximum value. At the same time, we value collegiality and collaboration, allowing each of us to draw on the entire firm’s knowledge and experience. This combination lets us give you the crucial insights necessary to get the results you need in the most efficient way possible.</p>
+            <p>A.O. Aderele and Associates is an Abuja- based law firm focused on civil litigation with a track record of successfully recovering contractual debts for our clients. Our practice areas include Procurement, Construction, Taxation, Judicial Review and Debt Recovery.</p>
+
+
+              <p> Our focus is on our client’s business interests. We work to ensure that legal issues are resolved as quickly as possible to enable our clients focus on their core business.
+              The skill of our representation has seen us referred to clients and counsel across jurisdictions and has brought repeat business from existing clients who trust the quality of our service.</p>
+
+            <!-- <p>Schlam Stone & Dolan is a preeminent boutique law firm with the experience, creativity, and problem-solving skills to get successful results quickly and efficiently. Our attorneys are seasoned litigators, transactional lawyers, and counsellors who have honed their skills at New York’s elite big firms and in public service, including many who have held leadership positions at U.S. Attorneys’ and District Attorneys’ offices.</p>
+            <p>Our experience allows us to staff cases leanly, so that clients get maximum value. At the same time, we value collegiality and collaboration, allowing each of us to draw on the entire firm’s knowledge and experience. This combination lets us give you the crucial insights necessary to get the results you need in the most efficient way possible.</p> -->
           </div>
         </div>
       </div>

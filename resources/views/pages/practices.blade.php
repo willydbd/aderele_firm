@@ -23,7 +23,8 @@
             <br>
             <div class="share-media">
                <!-- Go to www.addthis.com/dashboard to customize your tools -->
-               <div class="addthis_inline_share_toolbox"></div>
+               <div class="addthis_inline_share_toolbox" data-title="Our practice comprises all aspects of civil litigation, Criminal Defence, Judicial Review, Debt Recovery, Taxation, Construction Dispute, Appeals, and Procurement."></div>
+               
             </div>
             @foreach($practices as $practice)
             <div class="practice-read">

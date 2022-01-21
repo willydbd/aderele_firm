@@ -16,7 +16,7 @@
             <div class="print_share">
 
                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis_inline_share_toolbox"></div>
+                <div class="addthis_inline_share_toolbox" data-title="{{ $blog->title }}"></div>
             </div>
             <div class="blog-post">
               <p>{!! \Illuminate\Support\Str::limit($blog->body, 350, $end='...') !!}
